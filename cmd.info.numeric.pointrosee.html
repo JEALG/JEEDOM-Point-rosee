@@ -1,0 +1,107 @@
+<div style="min-width:80px; mini-height:90px;" class="cmd tooltips cmd-widget cursor container-fluid" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
+ 	<!-- Info Widget
+		Basé sur les widget de 	: 
+		Mise à jour 			: JAG 20190310 11:50
+	-->
+	<center>
+      <span class='cmdName' style="font-weight: bold;font-size : 0.8em;width: 65px;height: 17px;overflow: hidden;position: relative;#hideCmdName#;" title="#name#">#name_display#</span>
+  	</center>
+  
+  <center>
+    	<div style="text-align:center;">
+          <div id="point_roseDivIMG#id#" class="point_rose_div_img">
+              <span id="point_roseIMG#id#" class="iconCmd point_rose_img"></span>
+          </div>
+          <div style="display:inline-block;">
+            <span class="point_rose_state"id="point_roseState#id#">#state#</span>	
+            <span class="point_rose_unite"id="point_roseUnite#id#">#unite#</span>
+              <div> <!-- légende -->
+                  <span style="margin-top : 10px;line-height:10px;font-size: 0.7em;font-weight: bold;display: inline-block;text-align: justify;#displayHistory#">
+                      <span title='Min' class='tooltips left'>Min : </span><span style="float:right;">#minHistoryValue# #unite#</span><br/>
+                      <span title='Moyenne' class='tooltips'>Moy : </span><span style="float:right;">#averageHistoryValue# #unite#</span><br/>
+                      <span title='Max' class='tooltips'>Max : </span><span style="float:right;">#maxHistoryValue# #unite#</span><br/>
+                      <i class="#tendance#"></i>
+                  </span>
+              </div>
+          </div>
+        </div>
+          
+	</center>
+	<script>
+      	// Options de personnalisation avec valeur par defaut 
+        	// Paramètrage du logo
+				var srcImglogo		= ('#logo#'!='#'+'logo#') ? "#logo#" : "point_rosee";
+        	// Paramètrage de la position de la légende
+				var srcImgleg_pos	= ('#leg_pos#'!='#'+'leg_pos#') ? "#leg_pos#" : "right";
+        // Paramètre "sizehw" : à déclarer en pixels - 92 maxi
+      			var srcImgHeight	= (is_numeric('#sizeh#')) ? parseFloat('#sizeh#') : 80;
+      			var srcImgWidth 	= (is_numeric('#sizew#')) ? parseFloat('#sizew#') : 45;
+        // Paramétrage des images
+        		var srcImgURL 		= 'plugins/widget/core/template/dashboard/cmd.info.numeric.pointrosee/'; 
+      
+      
+		// Choix IMG
+			var iconUpdate = function (state){
+                $('.cmd[data-cmd_uid=#uid#] .iconCmd').empty();
+              	// Update Value or img
+              		$('.cmd[data-cmd_uid=#uid#] .iconCmd').html('<img src="'+srcImgURL +srcImglogo+ '.png" style="height:' + srcImgHeight +'px;width:' + srcImgWidth +'px;">'); 
+			$('.cmd[data-cmd_uid=#uid#] .state').text(state);
+			};      
+				// Paramétrage des affichage
+					// Position image
+						if (srcImgleg_pos == "right"){
+                          $("#point_roseDivIMG#id#.point_rose_div_img").css("float","left");
+                          $("#point_roseIMG#id#.point_rose_img").css("margin-right","15px"); 
+                      	} else if (srcImgleg_pos == "left"){
+                          $("#point_roseDivIMG#id#.point_rose_div_img").css("float","right");
+                          $("#point_roseIMG#id#.point_rose_img").css("margin-left","15px");
+                      	} else { 
+                          //aucune modification nécessaire
+                      	}
+					// Position Texte 
+      						$("#point_roseUnite#id#.point_rose_unite").css("margin-top","-30px");
+                        if (srcImgleg_pos == "right") {
+                            $("#point_roseState#id#.point_rose_state").css("margin-left","-30px"); 
+                            $("#point_roseUnite#id#.point_rose_unite").css("display","block");
+                            $("#point_roseUnite#id#.point_rose_unite").css("margin-left","25px");
+                        } else if (srcImgleg_pos == "left"){
+                            $("#point_roseState#id#.point_rose_state").css("margin-right","18px"); 
+                            $("#point_roseUnite#id#.point_rose_unite").css("display","block");
+                            $("#point_roseUnite#id#.point_rose_unite").css("margin-left","40px");
+                        } else if (srcImgleg_pos == "low"){ 
+                            $("#point_roseUnite#id#.point_rose_unite").css("display","block");
+                            
+                            $("#point_roseUnite#id#.point_rose_unite").css("margin-left","50px");
+                        }
+      
+	jeedom.cmd.update['#id#'] = function(_options){
+		$('.cmd[data-cmd_uid=#uid#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+		iconUpdate(_options.display_value);
+	}
+	jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+	</script>
+</div>
+<style> 
+span.point_rose_img {
+  	height: 80px;
+  }
+span.point_rose_div_img {
+    margin-left: 5px;
+	position:relative;
+  	height: 64px;
+  	width: 62px;
+	float:left;
+  }  
+span.point_rose_state {
+  	font-weight: bold;
+  	font-size: 1.5em;
+  	margin-top: 5px;
+  	display: block;
+  }
+span.point_rose_unite {
+  	font-size: 0.7em;
+  	margin-top: 5px;
+  	top: 22px;
+  }
+
+</style>
