@@ -40,13 +40,14 @@
         // Paramétrage des images
 			  var srcImgURL 		= 'plugins/widget/core/template/dashboard/cmd.info.numeric.pointrosee/';
       		  var srcImglogo		= ('#logo#'!='#'+'logo#') ? "#logo#" : "point_rosee";
+              var srcImglogo_T 	    = ('#logo_type#'!='#'+'logo_type#') ? "#logo_type#" : "png";
       // Update
 			var srcPictureID;     
 			var State = parseFloat(_options.display_value);	
       
    
 		// Update Value or img
-          	$('.cmd[data-cmd_uid=#uid#] .iconCmd').html('<img src="'+srcImgURL + srcImglogo+ '.png" style="height:' + srcImgHeight +'px;width:' + srcImgWidth +'px;">'); 
+          	$('.cmd[data-cmd_uid=#uid#] .iconCmd').html('<img src="'+srcImgURL + srcImglogo +'.'+ srcImglogo_T+'" style="height:' + srcImgHeight +'px;width:' + srcImgWidth +'px;">'); 
 			$('.cmd[data-cmd_uid=#uid#] .state').text(State);
 			$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate);
 		// Paramétrage des affichage
