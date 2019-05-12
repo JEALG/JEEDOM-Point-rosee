@@ -12,7 +12,7 @@
                 <span id="point_roseIMG#id#" class="iconCmd#id# point_rose_img"></span>
             </div>
             <div style="display:inline-block;">
-                <span class="point_rose_state state"id="point_roseState#id#" style="text-align: right">#state#</span>
+                <span class="point_rose_state state"id="point_roseState#id#">#state#</span>
                 <div class="#hide_history#">
                     <span style="margin-top : 10px;line-height:10px;font-size: 0.7em;display: inline-block;text-align: justify;#displayHistory#">
                         <span title='Min' class='tooltips left'>Min : </span><span style="float:right;">#minHistoryValue# #unite#</span><br/>
@@ -57,11 +57,10 @@
                     //aucune modification nécessaire
                 }
             // Position Texte 
-                $("#point_roseUnite#id#.point_rose_unite").css("margin-top","-30px");
                     if (srcImgleg_pos == "right") {
-                        $("#point_roseState#id#.point_rose_state").css("margin-left","-30px"); 
+                        $("#point_roseState#id#.point_rose_state").css("text-align","left");
                     } else if (srcImgleg_pos == "left"){
-                        $("#point_roseState#id#.point_rose_state").css("margin-right","18px"); 
+                        $("#point_roseState#id#.point_rose_state").css("text-align","right");
                     } else if (srcImgleg_pos == "low"){ 
                         //aucune modification nécessaire
                     }
