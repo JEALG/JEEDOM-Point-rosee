@@ -9,11 +9,11 @@
     <center>
         <div style="text-align:center;">
             <div id="point_roseDivIMG#id#" class="point_rose_div_img">
-                <span id="point_roseIMG#id#" class="iconCmd point_rose_img"></span>
+                <span id="point_roseIMG#id#" class="iconCmd#id# point_rose_img"></span>
             </div>
             <div style="display:inline-block;">
-                <span class="point_rose_state state"id="point_roseState#id#">#state#</span>
-                <div> <!-- légende -->
+                <span class="point_rose_state state"id="point_roseState#id#" style="text-align: right">#state#</span>
+                <div class="#hide_history#">
                     <span style="margin-top : 10px;line-height:10px;font-size: 0.7em;display: inline-block;text-align: justify;#displayHistory#">
                         <span title='Min' class='tooltips left'>Min : </span><span style="float:right;">#minHistoryValue# #unite#</span><br/>
                         <span title='Moyenne' class='tooltips'>Moy : </span><span style="float:right;">#averageHistoryValue# #unite#</span><br/>
@@ -42,7 +42,7 @@
                 var srcPictureID;     
                 var State = parseFloat(_options.display_value);	     
         // Update Value or img
-            $('.cmd[data-cmd_uid=#uid#] .iconCmd').html('<img src="'+srcImgURL + srcImglogo +'.'+ srcImglogo_T+'" style="height:' + srcImgHeight +'px;width:' + srcImgWidth +'px;">');
+            $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').html('<img src="'+srcImgURL + srcImglogo +'.'+ srcImglogo_T+'" style="height:' + srcImgHeight +'px;width:' + srcImgWidth +'px;">');
             $('.cmd[data-cmd_uid=#uid#] .state').empty().append(_options.display_value+' '+'#unite#');
             $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate);
         // Paramétrage des affichage
@@ -90,10 +90,5 @@ span.point_rose_state {
     font-size: 1.5em;
     margin-top: 5px;
     display: block;
-    }
-span.point_rose_unite {
-    font-size: 0.7em;
-    margin-top: 5px;
-    top: 22px;
     }
 </style>
