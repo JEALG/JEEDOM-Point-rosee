@@ -60,15 +60,10 @@
                 $("#point_roseUnite#id#.point_rose_unite").css("margin-top","-30px");
                     if (srcImgleg_pos == "right") {
                         $("#point_roseState#id#.point_rose_state").css("margin-left","-30px"); 
-                        $("#point_roseUnite#id#.point_rose_unite").css("display","block");
-                        $("#point_roseUnite#id#.point_rose_unite").css("margin-left","25px");
                     } else if (srcImgleg_pos == "left"){
                         $("#point_roseState#id#.point_rose_state").css("margin-right","18px"); 
-                        $("#point_roseUnite#id#.point_rose_unite").css("display","block");
-                        $("#point_roseUnite#id#.point_rose_unite").css("margin-left","40px");
                     } else if (srcImgleg_pos == "low"){ 
-                        $("#point_roseUnite#id#.point_rose_unite").css("display","block");
-                        $("#point_roseUnite#id#.point_rose_unite").css("margin-left","50px");
+                        //aucune modification nécessaire
                     }
     }     
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}); 
