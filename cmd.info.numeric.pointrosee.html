@@ -1,26 +1,27 @@
 <div style="min-width:80px; mini-height:90px;" class="cmd tooltips cmd-widget cursor container-fluid #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <!-- Info Widget
         Basé sur les widget de 	: 
-        Mise à jour 			: JAG 20190512 : Nettoyage du code
+        Mise à jour 			: JAG 20190519 : Nettoyage du code
     -->
-    <center>
-        <span class='cmdName' style="font-weight: bold;font-size : 0.8em;width: 65px;height: 17px;overflow: hidden;position: relative;#hideCmdName#;" title="#name#">#name_display#</span>
-    </center> 
+    <div class="title #hide_name#">
+        <div class="cmdName">#name_display#</div>
+    </div>
     <center>
         <div style="text-align:center;">
             <div id="point_roseDivIMG#id#" class="point_rose_div_img">
                 <span id="point_roseIMG#id#" class="iconCmd#id# point_rose_img"></span>
             </div>
             <div style="display:inline-block;">
-                <span class="point_rose_state state"id="point_roseState#id#"></span>
-                <div class="#hide_history#">
-                    <span style="margin-top : 10px;line-height:10px;font-size: 0.7em;display: inline-block;text-align: justify;#displayHistory#">
-                        <span title='Min' class='tooltips left'>Min : </span><span style="float:right;">#minHistoryValue# #unite#</span><br/>
-                        <span title='Moy' class='tooltips'>Moy : </span><span style="float:right;">#averageHistoryValue# #unite#</span><br/>
-                        <span title='Max' class='tooltips'>Max : </span><span style="float:right;">#maxHistoryValue# #unite#</span><br/>
-                        <i class="#tendance#"></i>
-                    </span>
-                </div>
+             <div class="value">
+                <span class="value#id# timeCmd label label-default value"></span>
+            </div>
+            <!-- Historique -->
+            <div class="cmdStats #hide_history#" style="#displayHistory# font-size : 10px;">
+                <span title="Min" class="tooltips">Min : </span><span style="float:right;">#minHistoryValue# #unite#</span><br/>
+                <span title='Moy' class='tooltips'>Moy : </span><span style="float:right;">#averageHistoryValue# #unite#</span><br/>
+                <span title='Max' class='tooltips'>Max : </span><span style="float:right;">#maxHistoryValue# #unite#</span><br/>
+                <i class="#tendance#"></i> 
+            </div>
             </div>
         </div>
     </center>
@@ -43,7 +44,7 @@
                 var State = parseFloat(_options.display_value);	     
         // Update Value or img
             $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').html('<img src="'+srcImgURL + srcImglogo +'.'+ srcImglogo_T+'" style="height:' + srcImgHeight +'px;width:' + srcImgWidth +'px;">');
-            $('.cmd[data-cmd_uid=#uid#] .state').empty().append(_options.display_value+' '+'#unite#');
+            $('.cmd[data-cmd_uid=#uid#] .value#id#').empty().append(_options.display_value+' '+'#unite#');
             $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate);
         // Paramétrage des affichage
             // Position image
