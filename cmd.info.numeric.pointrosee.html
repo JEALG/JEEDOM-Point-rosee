@@ -6,25 +6,23 @@
     <div class="title #hide_name#">
         <div class="cmdName">#name_display#</div>
     </div>
-    <center>
-        <div style="text-align:center;">
-            <div id="point_roseDivIMG#id#" class="point_rose_div_img">
-                <span id="point_roseIMG#id#" class="iconCmd#id# point_rose_img"></span>
-            </div>
-            <div style="display:inline-block;">
-             <div class="value">
+    <div style="text-align:center;">
+        <div id="point_roseDivIMG#id#" class="point_rose_div_img">
+            <span id="point_roseIMG#id#" class="iconCmd#id# point_rose_img"></span>
+        </div>
+        <div style="display:inline-block;">
+            <div class="value">
                 <span class="value#id# timeCmd label label-default value"></span>
             </div>
             <!-- Historique -->
-            <div class="cmdStats #hide_history#" style="#displayHistory# font-size : 10px;">
-                <span title="Min" class="tooltips">Min : </span><span style="float:right;">#minHistoryValue# #unite#</span><br/>
-                <span title='Moy' class='tooltips'>Moy : </span><span style="float:right;">#averageHistoryValue# #unite#</span><br/>
-                <span title='Max' class='tooltips'>Max : </span><span style="float:right;">#maxHistoryValue# #unite#</span><br/>
-                <i class="#tendance#"></i> 
-            </div>
-            </div>
+                <div class="cmdStats #hide_history#" style="#displayHistory# font-size : 10px;">
+                    <span title="Min" class="tooltips">Min : </span><span style="float:right;"> #minHistoryValue# #unite#</span><br/>
+                    <span title='Moy' class='tooltips'>Moy : </span><span style="float:right;"> #averageHistoryValue# #unite#</span><br/>
+                    <span title='Max' class='tooltips'>Max : </span><span style="float:right;"> #maxHistoryValue# #unite#</span><br/>
+                    <i class="#tendance#"></i> 
+                </div>
         </div>
-    </center>
+    </div>
 <script>
     jeedom.cmd.update['#id#'] = function(_options){
         // Options de personnalisation avec valeur par defaut
