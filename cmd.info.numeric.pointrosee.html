@@ -1,10 +1,10 @@
-<div style="min-width:80px; mini-height:90px;" class="cmd tooltips cmd-widget cursor container-fluid #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
+<div style="min-width:80px; mini-height:90px;margin-right:10px;" class="cmd tooltips cmd-widget cursor container-fluid #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <!-- Info Widget
-        Basé sur les widget de 	: 
+        Basé sur les widget de 	:
         Mise à jour 			: JAG 20190519 : Nettoyage du code
     -->
     <div class="title #hide_name#">
-        <div class="cmdName">#name_display#</div>
+        <div class="cmdName" style="#hideCmdName#">#name_display#</div>
     </div>
     <div style="text-align:center;">
         <div id="point_roseDivIMG#id#" class="point_rose_div_img">
@@ -19,52 +19,52 @@
                     <span title="Min" class="tooltips">Min : </span><span style="float:right;"> #minHistoryValue# #unite#</span><br/>
                     <span title='Moy' class='tooltips'>Moy : </span><span style="float:right;"> #averageHistoryValue# #unite#</span><br/>
                     <span title='Max' class='tooltips'>Max : </span><span style="float:right;"> #maxHistoryValue# #unite#</span><br/>
-                    <i class="#tendance#"></i> 
+                    <i class="#tendance#"></i>
                 </div>
         </div>
     </div>
-<script>
-    jeedom.cmd.update['#id#'] = function(_options){
-        // Options de personnalisation avec valeur par defaut
+    <script>
+        jeedom.cmd.update['#id#'] = function(_options){
+            // Options de personnalisation avec valeur par defaut
+                // Paramètrage de la position de la légende
+                    var srcImgleg_pos	= ('#leg_pos#'!='#'+'leg_pos#') ? "#leg_pos#" : "right";
+                // Paramètre "sizehw" : à déclarer en pixels - 80 maxi
+                    var srcImgHeight 	= (is_numeric('#sizeh#')) ? parseFloat('#sizeh#') : 80;
+                    var srcImgWidth		= (is_numeric('#sizew#')) ? parseFloat('#sizew#') : 45;
             // Paramètrage de la position de la légende
-                var srcImgleg_pos	= ('#leg_pos#'!='#'+'leg_pos#') ? "#leg_pos#" : "right";
-            // Paramètre "sizehw" : à déclarer en pixels - 80 maxi
-                var srcImgHeight 	= (is_numeric('#sizeh#')) 	? parseFloat('#sizeh#') 	: 80;
-                var srcImgWidth		= (is_numeric('#sizew#')) 	? parseFloat('#sizew#') 	: 45;
-        // Paramètrage de la position de la légende
-                var srcImgleg_pos	= ('#leg_pos#'!='#'+'leg_pos#') ? "#leg_pos#" : "right";
-        // Paramétrage des images
-                var srcImgURL 		= 'plugins/widget/core/template/dashboard/cmd.info.numeric.pointrosee/';
-                var srcImglogo		= ('#logo#'!='#'+'logo#') ? "#logo#" : "point_rosee";
-                var srcImglogo_T 	= ('#logo_type#'!='#'+'logo_type#') ? "#logo_type#" : "png";
-        // Update
-                var srcPictureID;     
-                var State = parseFloat(_options.display_value);	     
-        // Update Value or img
-            $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').html('<img src="'+srcImgURL + srcImglogo +'.'+ srcImglogo_T+'" style="height:' + srcImgHeight +'px;width:' + srcImgWidth +'px;">');
-            $('.cmd[data-cmd_uid=#uid#] .value#id#').empty().append(_options.display_value+' '+'#unite#');
-            $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate);
-        // Paramétrage des affichage
-            // Position image
-                if (srcImgleg_pos == "right"){
-                    $("#point_roseDivIMG#id#.point_rose_div_img").css("float","left");
-                    $("#point_roseIMG#id#.point_rose_img").css("margin-right","15px"); 
-                } else if (srcImgleg_pos == "left"){
-                    $("#point_roseDivIMG#id#.point_rose_div_img").css("float","right");
-                    $("#point_roseIMG#id#.point_rose_img").css("margin-left","15px");
-                } else { 
-                    //aucune modification nécessaire
-                }
-            // Position Texte 
+                    var srcImgleg_pos	= ('#leg_pos#'!='#'+'leg_pos#') ? "#leg_pos#" : "right";
+            // Paramétrage des images
+                    var srcImgURL 		= 'plugins/widget/core/template/dashboard/cmd.info.numeric.pointrosee/';
+                    var srcImglogo		= ('#logo#'!='#'+'logo#') ? "#logo#" : "point_rosee";
+                    var srcImglogo_T 	= ('#logo_type#'!='#'+'logo_type#') ? "#logo_type#" : "png";
+            // Update
+                    var srcPictureID;
+                    var State = parseFloat(_options.display_value);
+            // Update Value or img
+                $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').html('<img src="'+srcImgURL + srcImglogo +'.'+ srcImglogo_T+'" style="height:' + srcImgHeight +'px;width:' + srcImgWidth +'px;">');
+                $('.cmd[data-cmd_uid=#uid#] .value#id#').empty().append(_options.display_value+' '+'#unite#');
+                $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate);
+            // Paramétrage des affichage
+                // Position image
+                    if (srcImgleg_pos == "right"){
+                        $("#point_roseDivIMG#id#.point_rose_div_img").css("float","left");
+                        $("#point_roseIMG#id#.point_rose_img").css("margin-right","15px");
+                    } else if (srcImgleg_pos == "left"){
+                        $("#point_roseDivIMG#id#.point_rose_div_img").css("float","right");
+                        $("#point_roseIMG#id#.point_rose_img").css("margin-left","15px");
+                    } else {
+                        //aucune modification nécessaire
+                    }
+                // Position Texte
                     if (srcImgleg_pos == "right") {
                         $("#point_roseState#id#.point_rose_state").css("text-align","left");
                     } else if (srcImgleg_pos == "left"){
                         $("#point_roseState#id#.point_rose_state").css("text-align","right");
-                    } else if (srcImgleg_pos == "low"){ 
+                    } else if (srcImgleg_pos == "low"){
                         //aucune modification nécessaire
                     }
-    }     
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}); 
+        }
+        jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}); 
 </script>
 </div>
 <style> 
