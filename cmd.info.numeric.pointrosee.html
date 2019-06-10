@@ -1,7 +1,7 @@
 <div style="min-width:80px; mini-height:90px;margin-right:10px;" class="cmd tooltips cmd-widget cursor container-fluid #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <!-- Info Widget
         Basé sur les widget de 	:
-        Mise à jour 			: JAG 20190519 : Nettoyage du code
+        Mise à jour 			: JAG 20190609 : Mise à jour taille
     -->
     <div class="title #hide_name#">
         <div class="cmdName" style="#hideCmdName#">#name_display#</div>
@@ -31,6 +31,7 @@
                 // Paramètre "sizehw" : à déclarer en pixels - 80 maxi
                     var srcImgHeight 	= (is_numeric('#sizeh#')) ? parseFloat('#sizeh#') : 80;
                     var srcImgWidth		= (is_numeric('#sizew#')) ? parseFloat('#sizew#') : 45;
+                    var srcImgSize      = 'height='+srcImgHeight+'px width='+srcImgWidth+'px';
             // Paramètrage de la position de la légende
                     var srcImgleg_pos	= ('#leg_pos#'!='#'+'leg_pos#') ? "#leg_pos#" : "right";
             // Paramétrage des images
@@ -41,7 +42,7 @@
                     var srcPictureID;
                     var State = parseFloat(_options.display_value);
             // Update Value or img
-                $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').html('<img src="'+srcImgURL + srcImglogo +'.'+ srcImglogo_T+'" style="height:' + srcImgHeight +'px;width:' + srcImgWidth +'px;">');
+                $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').empty().append('<img src="'+srcImgURL + srcImglogo +'.'+ srcImglogo_T+'" '+srcImgSize+'>');
                 $('.cmd[data-cmd_uid=#uid#] .value#id#').empty().append(_options.display_value+' '+'#unite#');
                 $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate);
             // Paramétrage des affichage
