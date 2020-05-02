@@ -1,7 +1,8 @@
 <div style="min-width:80px; mini-height:90px;margin-right:10px;" class="cmd tooltips cmd-widget cursor container-fluid #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <!-- Info Widget
         Basé sur les widget de 	:
-        Mise à jour 			: JAG 20190918 : Migration uniquement pour core V4
+        Widget pour le Core         : V4
+        Mise à jour	                : JAG 20200502 => Ajout Version Core
     -->
     <div class="title #hide_name#">
         <div class="cmdName" style="#hideCmdName#">#name_display#</div>
@@ -15,72 +16,81 @@
                 <span class="value#id# timeCmd label label-default value"></span>
             </div>
             <!-- Historique -->
-                <div class="cmdStats #hide_history#" style="#displayHistory# font-size : 10px;text-align: left;">
-                    <span title="Min" style="float:left;">Min : #minHistoryValue# #unite#</span><br/>
-                    <span title="Moy" style="float:left;">Moy : #averageHistoryValue# #unite#</span><br/>
-                    <span title="Max" style="float:left;">Max : #maxHistoryValue# #unite#</span><br/>
-                    <i class="#tendance#"></i>
-                </div>
+            <div class="cmdStats #hide_history#" style="#displayHistory# font-size : 10px;text-align: left;">
+                <span title="Min" style="float:left;">Min : #minHistoryValue# #unite#</span><br />
+                <span title="Moy" style="float:left;">Moy : #averageHistoryValue# #unite#</span><br />
+                <span title="Max" style="float:left;">Max : #maxHistoryValue# #unite#</span><br />
+                <i class="#tendance#"></i>
+            </div>
         </div>
     </div>
     <script>
-        jeedom.cmd.update['#id#'] = function(_options){
+        jeedom.cmd.update['#id#'] = function(_options) {
             // Options de personnalisation avec valeur par defaut
-                // Paramètrage de la position de la légende
-                    var srcImgleg_pos	= ('#leg_pos#'!='#'+'leg_pos#') ? "#leg_pos#" : "right";
-                // Paramètre "sizehw" : à déclarer en pixels - 80 maxi
-                    var srcImgHeight 	= (is_numeric('#sizeh#')) ? parseFloat('#sizeh#') : 80;
-                    var srcImgWidth		= (is_numeric('#sizew#')) ? parseFloat('#sizew#') : 45;
-                    var srcImgSize      = 'height='+srcImgHeight+'px width='+srcImgWidth+'px';
+            // Paramètrage de la position de la légende
+            var srcImgleg_pos = ('#leg_pos#' != '#' + 'leg_pos#') ? "#leg_pos#" : "right";
+            // Paramètre "sizehw" : à déclarer en pixels - 80 maxi
+            var srcImgHeight = (is_numeric('#sizeh#')) ? parseFloat('#sizeh#') : 80;
+            var srcImgWidth = (is_numeric('#sizew#')) ? parseFloat('#sizew#') : 45;
+            var srcImgSize = 'height=' + srcImgHeight + 'px width=' + srcImgWidth + 'px';
             // Paramétrage des images
-                    var srcImgURL 		= 'data/customTemplates/dashboard/cmd.action.other.Multi-action-Defaut/humidite/';
-                    var srcImglogo		= ('#logo#'!='#'+'logo#') ? "#logo#" : "hu_point_rosee";
-                    var srcImglogo_T 	= ('#logo_type#'!='#'+'logo_type#') ? "#logo_type#" : "png";
+            var srcImgURL = 'data/customTemplates/dashboard/cmd.action.other.Multi-action-Defaut/humidite/';
+            var srcImglogo = ('#logo#' != '#' + 'logo#') ? "#logo#" : "hu_point_rosee";
+            var srcImglogo_T = ('#logo_type#' != '#' + 'logo_type#') ? "#logo_type#" : "png";
             // Update
-                    var srcPictureID;
-                    var State = parseFloat(_options.display_value);
+            var srcPictureID;
+            var State = parseFloat(_options.display_value);
             // Update Value or img
-                $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').empty().append('<img src="'+srcImgURL + srcImglogo +'.'+ srcImglogo_T+'" '+srcImgSize+'>');
-                $('.cmd[data-cmd_uid=#uid#] .value#id#').empty().append(_options.display_value+' '+'#unite#');
-                $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate);
+            $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').empty().append('<img src="' + srcImgURL + srcImglogo + '.' + srcImglogo_T + '" ' + srcImgSize + '>');
+            $('.cmd[data-cmd_uid=#uid#] .value#id#').empty().append(_options.display_value + ' ' + '#unite#');
+            $('.cmd[data-cmd_id=#id#]').attr('title', 'Valeur du ' + _options.valueDate);
             // Paramétrage des affichage
-                // Position image
-                    if (srcImgleg_pos == "right"){
-                        $("#point_roseDivIMG#id#.point_rose_div_img").css("float","left");
-                        $("#point_roseIMG#id#.point_rose_img").css("margin-right","15px");
-                    } else if (srcImgleg_pos == "left"){
-                        $("#point_roseDivIMG#id#.point_rose_div_img").css("float","right");
-                        $("#point_roseIMG#id#.point_rose_img").css("margin-left","15px");
-                    } else {
-                        //aucune modification nécessaire
-                    }
-                // Position Texte
-                    if (srcImgleg_pos == "right") {
-                        $("#point_roseState#id#.point_rose_state").css("text-align","left");
-                    } else if (srcImgleg_pos == "left"){
-                        $("#point_roseState#id#.point_rose_state").css("text-align","right");
-                    } else if (srcImgleg_pos == "low"){
-                        //aucune modification nécessaire
-                    }
+            // Position image
+            if (srcImgleg_pos == "right") {
+                $("#point_roseDivIMG#id#.point_rose_div_img").css("float", "left");
+                $("#point_roseIMG#id#.point_rose_img").css("margin-right", "15px");
+            } else if (srcImgleg_pos == "left") {
+                $("#point_roseDivIMG#id#.point_rose_div_img").css("float", "right");
+                $("#point_roseIMG#id#.point_rose_img").css("margin-left", "15px");
+            } else {
+                //aucune modification nécessaire
+            }
+            // Position Texte
+            if (srcImgleg_pos == "right") {
+                $("#point_roseState#id#.point_rose_state").css("text-align", "left");
+            } else if (srcImgleg_pos == "left") {
+                $("#point_roseState#id#.point_rose_state").css("text-align", "right");
+            } else if (srcImgleg_pos == "low") {
+                //aucune modification nécessaire
+            }
         }
-        jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}); 
-</script>
+        jeedom.cmd.update['#id#']({
+            display_value: '#state#',
+            valueDate: '#valueDate#',
+            collectDate: '#collectDate#',
+            alertLevel: '#alertLevel#'
+        });
+
+    </script>
 </div>
-<style> 
-span.point_rose_img {
-    height: 80px;
+<style>
+    span.point_rose_img {
+        height: 80px;
     }
-span.point_rose_div_img {
-    margin-left: 5px;
-    position:relative;
-    height: 64px;
-    width: 62px;
-    float:left;
-    }  
-span.point_rose_state {
-    font-weight: bold;
-    font-size: 1.5em;
-    margin-top: 5px;
-    display: block;
+
+    span.point_rose_div_img {
+        margin-left: 5px;
+        position: relative;
+        height: 64px;
+        width: 62px;
+        float: left;
     }
+
+    span.point_rose_state {
+        font-weight: bold;
+        font-size: 1.5em;
+        margin-top: 5px;
+        display: block;
+    }
+
 </style>
